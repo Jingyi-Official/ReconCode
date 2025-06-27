@@ -1,0 +1,47 @@
+_target_: modelmodule.base.Module
+
+net:
+  _target_: model.mlpf.MLPF
+  scale_output: 0.14
+  scale_input: 0.05937489
+  transform_input:
+    - [-6.15441689e-02, -9.98104361e-01, -3.37555680e-07, 1.55688511e+00]
+    - [9.98104361e-01, -6.15441689e-02, -2.07500264e-08, -8.58405780e-01]
+    - [-6.38918612e-11, -3.38192839e-07, 1.00000000e+00, -1.66513378e+00]
+    - [0.00000000e+00,  0.00000000e+00,  0.00000000e+00, 1.00000000e+00]
+
+
+  positional_encoder:
+    _target_: model.encoder.positional_encoder.nerf.PositionalEncoding
+    in_dim: 3
+    min_deg: 0
+    max_deg: 5
+    n_freqs: 6
+    freq_factor: 1
+    include_input: False
+
+  decoder: 
+    _target_: model.decoder.vmlp.VMLPDecoding
+    in_dim: [12, 24]
+    num_layers: [[2,2,2], [2,2,2]]
+    layer_width: [[256,256,256], [256,256,256]]
+    out_dim: 32
+    skip_connections: null
+    activation: 
+      _target_: torch.nn.Softplus
+      beta: 100
+    out_activation: null
+    decoder: null
+
+optimizer:
+  _target_: torch.optim.AdamW
+  _partial_: true
+  lr: 0.0013
+  weight_decay: 0.012
+
+
+weights:
+  sdf_weight: 1
+  eik_weight: 0
+
+

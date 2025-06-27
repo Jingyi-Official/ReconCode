@@ -1,0 +1,32 @@
+env:
+  WANDB_AGENT_MAX_INITIAL_FAILURES: 20000
+
+program: main.py
+project: neuralvf
+method: grid
+metric:
+  name: test_error_avg
+  goal: minimize
+parameters:
+
+  modelmodule.net.decoder.out_dim:
+    values: [32, 16, 8]
+  
+  modelmodule.net.decoder.include_input:
+    values: [True, False]
+
+  modelmodule.optimizer.lr:
+    values: [1e-3]
+  
+    
+command:
+  - ${env}
+  - CUDA_VISIBLE_DEVICE=0
+  - python
+  - ${program}
+  - datamodule=replica
+  - modelmodule=neuralvf
+  - modelmodule.weights.sdf_weight=1
+  - modelmodule.weights.eik_weight=0
+  - group=replica_neuralvf_lightning_1_0_2layer_${modelmodule.net.decoder.out_dim}_2layer_${modelmodule.net.decoder.include_input}_${modelmodule.optimizer.lr}_softplus
+  - ${args_no_hyphens}

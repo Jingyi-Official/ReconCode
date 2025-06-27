@@ -1,0 +1,34 @@
+_target_: modelmodule.base.Module
+
+net:
+  _target_: model.tensorf.TensoRF
+  xyz_min: [-2.67659784, -0.08062697, -4.83431278]
+  xyz_max: [ 4.58195351,  3.04455779,  8.16458168]
+  
+  positional_encoder:
+    _target_: model.encoder.positional_encoder.identity.PositionalEncoding
+    in_dim: 3
+
+  decoder: 
+    _target_: model.decoder.grid.Grid3D
+    resolution: [727, 314, 1300]
+    init_weight: 
+      _target_: torch.nn.init.uniform_
+      _partial_: true
+      a: -2.5
+      b: 2.5
+    decoder: null
+
+
+optimizer:
+  _target_: torch.optim.AdamW
+  _partial_: true
+  lr: 0.0013
+  weight_decay: 0.012
+
+
+weights:
+  sdf_weight: 1
+  eik_weight: 0
+
+

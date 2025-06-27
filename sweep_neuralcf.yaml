@@ -1,0 +1,32 @@
+env:
+  WANDB_AGENT_MAX_INITIAL_FAILURES: 20000
+
+program: main.py
+project: neuralcf
+method: grid
+metric:
+  name: test_error_avg
+  goal: minimize
+parameters:
+
+  modelmodule.net.decoder.out_dim:
+    values: [8, 16, 32, 64]
+  
+  modelmodule.net.decoder.include_input:
+    values: [True, False]
+
+  modelmodule.optimizer.lr:
+    values: [1e-3]
+  
+    
+command:
+  - ${env}
+  - CUDA_VISIBLE_DEVICE=4
+  - python
+  - ${program}
+  - datamodule=replica
+  - modelmodule=neuralcf
+  - modelmodule.weights.sdf_weight=1
+  - modelmodule.weights.eik_weight=0
+  - group=replica_neuralcf_lightning_1_0_2layer_${modelmodule.net.decoder.out_dim}_2layer_${modelmodule.net.decoder.include_input}_${modelmodule.optimizer.lr}_softplus
+  - ${args_no_hyphens}

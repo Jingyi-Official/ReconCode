@@ -1,0 +1,26 @@
+_target_: pytorch_lightning.Trainer
+default_root_dir: ${hydra:runtime.output_dir}
+
+min_epochs: 1 # prevents early stopping
+max_steps: 10000
+
+accelerator: gpu
+devices: 1
+
+# mixed precision for extra speed-up
+precision: bf16
+
+# perform a validation loop every N training epochs
+limit_val_batches: 5
+# limit_test_batches: 100
+val_check_interval: 500 # Pass an int to check after a fixed number of training batches
+
+# set True to to ensure deterministic results
+# makes training slower but gives more reproducibility than just setting seeds
+deterministic: False
+
+profiler: 
+  _target_: pytorch_lightning.profilers.SimpleProfiler
+  dirpath: null #profiling
+  filename: null #profile.txt
+  extended: True

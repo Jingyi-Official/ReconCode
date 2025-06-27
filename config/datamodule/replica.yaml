@@ -1,0 +1,7 @@
+_target_: datamodule.replica.ReplicaDataModule
+data_dir: /media/SSD/jingyi/iSDF/data/gt_sdfs/apt_3/ 
+batch_size: 27000 # 5 frames samples
+
+
+
+

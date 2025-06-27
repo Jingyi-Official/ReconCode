@@ -1,0 +1,17 @@
+project: ReconstructCode
+group: ${hydra:runtime.choices.datamodule}_${hydra:runtime.choices.modelmodule}_${hydra:runtime.choices.trainer}_${modelmodule.weights.sdf_weight}_${modelmodule.weights.eik_weight}_${modelmodule.optimizer.lr} #_${modelmodule.net.decoder.out_dim}
+seed: 1234
+tags: ["${hydra:runtime.choices.datamodule}", "${hydra:runtime.choices.modelmodule}", "${hydra:runtime.choices.trainer}"]
+device: 0
+defaults:
+  - _self_
+  - datamodule: sphere
+  - modelmodule: kplane
+  - trainer: lightning
+  - callback: default
+  - logger: wandb
+comments: ex2
+
+hydra:
+  run:
+    dir: /media/SSD/jingyi/recode_latest/outputs/${project}/${group}/${hydra.runtime.choices.datamodule}/${hydra.runtime.choices.modelmodule}/${hydra.runtime.choices.trainer}/${comments}

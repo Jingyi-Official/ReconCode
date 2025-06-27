@@ -1,0 +1,8 @@
+python main.py project=kplane datamodule=replica modelmodule=kplane modelmodule.weights.sdf_weight=1 modelmodule.weights.eik_weight=0 modelmodule.net.decoder.num_components=8 group=replica_kplane_lightning_1_0_8_gridsampleFalse comments=ex1
+python main.py project=kplane datamodule=replica modelmodule=kplane modelmodule.weights.sdf_weight=1 modelmodule.weights.eik_weight=10 modelmodule.net.decoder.num_components=8 group=replica_kplane_lightning_1_10_8_gridsampleFalse comments=ex1
+python main.py project=kplane datamodule=replica modelmodule=kplane modelmodule.weights.sdf_weight=1 modelmodule.weights.eik_weight=1 modelmodule.net.decoder.num_components=8 group=replica_kplane_lightning_1_1_8_gridsampleFalse comments=ex1
+python main.py project=kplane datamodule=replica modelmodule=kplane modelmodule.weights.sdf_weight=1 modelmodule.weights.eik_weight=0.1 modelmodule.net.decoder.num_components=8 group=replica_kplane_lightning_1_'0.1'_8_gridsampleFalse comments=ex1
+python main.py project=kplane datamodule=replica modelmodule=kplane modelmodule.weights.sdf_weight=1 modelmodule.weights.eik_weight=0.01 modelmodule.net.decoder.num_components=8 group=replica_kplane_lightning_1_'0.01'_8_gridsampleFalse comments=ex1
+python main.py project=kplane datamodule=replica modelmodule=kplane modelmodule.weights.sdf_weight=1 modelmodule.weights.eik_weight=0.001 modelmodule.net.decoder.num_components=8 group=replica_kplane_lightning_1_'0.001'_8_gridsampleFalse comments=ex1
+python main.py project=kplane datamodule=replica modelmodule=kplane modelmodule.weights.sdf_weight=1 modelmodule.weights.eik_weight=0.0001 modelmodule.net.decoder.num_components=8 group=replica_kplane_lightning_1_'0.0001'_8_gridsampleFalse comments=ex1
+

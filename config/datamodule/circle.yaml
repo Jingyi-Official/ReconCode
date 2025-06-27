@@ -1,0 +1,9 @@
+_target_: datamodule.circle.CircleDataModule
+xy_dim: [680, 680]
+R: 0.5
+center: [0,0]
+xy_min: [-1,-1]
+xy_max: [1,1]
+batch_size: 10000 # 5 frames samples
+
+
